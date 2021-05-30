@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your editor</title>
+  </head>
+  <body>
+    <label for="filename">File name</label>
+    <input type="text" id="filename" value="hello.txt" />
+
+    <br /><br /><br />
+
+    <label for="text-val"></label>
+    <textarea type="text" id="text-val" value="new change" rows="4"></textarea>
+    <br />
+    <br />
+    <button id="download-btn">Download File</button>
+
+    <script src="./js/filesave.js"></script>
+    <script>
+      document.getElementById("download-btn").addEventListener(
+        "click",
+        function () {
+          var text = document.getElementById("text-val").value;
+          var filename = document.getElementById("filename").value;
+
+          var blob = new Blob([text], {
+            type: "text/plain;charset-utf-8",
+          });
+
+          saveAs(blob, filename);
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
